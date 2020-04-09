@@ -9,3 +9,11 @@ server {
         proxy_pass http://unix:/home/user/hello/hello.sock;
     }
 }
+
+server {
+    listen 80;
+    server_name 0.0.0.0;
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
