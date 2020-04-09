@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve hello
+After=network.target
+
+[Service]
+User=user
+Group=www-data
+WorkingDirectory=/home/user/hello
+Environment="PATH=/usr/bin"
+ExecStart=/home/user/.local/bin/gunicorn --workers 3 --bind unix:hello.sock -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target

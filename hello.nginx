@@ -1,0 +1,11 @@
+server {
+    listen 443 ssl;
+    server_name 0.0.0.0;
+    ssl_certificate /home/user/hello/cert.pem;
+    ssl_certificate_key /home/user/hello/key.pem;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/user/hello/hello.sock;
+    }
+}
